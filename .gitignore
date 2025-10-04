@@ -1,0 +1,15 @@
+node_modules/
+coverage/
+.DS_Store
+*.log
+.env
+dist/
+public/*.js
+public/atoms/
+public/molecules/
+public/organisms/
+public/core/
+public/utils/
+public/maps/
+cypress/videos/
+cypress/screenshots/
