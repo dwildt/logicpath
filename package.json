@@ -1,0 +1,46 @@
+{
+  "name": "logicpath",
+  "version": "1.0.0",
+  "description": "A Cubetto-inspired logic programming game for learning coding concepts",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "npx http-server public -p 8080 -o",
+    "build": "npm run copy-assets",
+    "copy-assets": "cp -r src/* public/ && cp -r maps public/maps",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:e2e": "cypress open",
+    "test:e2e:headless": "cypress run",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dwildt/logicpath.git"
+  },
+  "keywords": [
+    "game",
+    "programming",
+    "education",
+    "cubetto",
+    "logic",
+    "coding",
+    "kids"
+  ],
+  "author": "dwildt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dwildt/logicpath/issues"
+  },
+  "homepage": "https://dwildt.github.io/logicpath",
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.23.0",
+    "babel-jest": "^29.7.0",
+    "cypress": "^13.6.0",
+    "eslint": "^8.54.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}
