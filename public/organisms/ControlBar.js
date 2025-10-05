@@ -8,6 +8,7 @@ export class ControlBar {
   constructor(options = {}) {
     this.onPlay = options.onPlay || (() => {});
     this.onRestart = options.onRestart || (() => {});
+    this.onClear = options.onClear || (() => {});
     this.onMapSelect = options.onMapSelect || (() => {});
     this.onAbout = options.onAbout || (() => {});
     this.element = this.render();
@@ -29,6 +30,12 @@ export class ControlBar {
       onClick: this.onRestart
     });
 
+    this.clearButton = new Button({
+      icon: 'clear',
+      className: 'btn-clear',
+      onClick: this.onClear
+    });
+
     this.mapButton = new Button({
       icon: 'map',
       className: 'btn-map',
@@ -43,6 +50,7 @@ export class ControlBar {
 
     controlBar.appendChild(this.playButton.getElement());
     controlBar.appendChild(this.restartButton.getElement());
+    controlBar.appendChild(this.clearButton.getElement());
     controlBar.appendChild(this.mapButton.getElement());
     controlBar.appendChild(this.aboutButton.getElement());
 
@@ -61,9 +69,14 @@ export class ControlBar {
     this.restartButton.setDisabled(disabled);
   }
 
+  setClearDisabled(disabled) {
+    this.clearButton.setDisabled(disabled);
+  }
+
   destroy() {
     this.playButton.destroy();
     this.restartButton.destroy();
+    this.clearButton.destroy();
     this.mapButton.destroy();
     this.aboutButton.destroy();
     this.element.remove();

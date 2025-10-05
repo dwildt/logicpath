@@ -32,6 +32,7 @@ class LogicPath {
     this.controlBar = new ControlBar({
       onPlay: () => this.handlePlay(),
       onRestart: () => this.handleRestart(),
+      onClear: () => this.handleClear(),
       onMapSelect: () => this.handleMapSelect(),
       onAbout: () => this.handleAbout()
     });
@@ -153,6 +154,10 @@ class LogicPath {
     this.gameBoard.getAvatar().reset();
     this.commandPanel.clear();
     this.gameBoard.unhighlightAll();
+  }
+
+  handleClear() {
+    this.commandPanel.clear();
   }
 
   handleMapSelect() {

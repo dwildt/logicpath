@@ -40,7 +40,8 @@ export class Icon {
       'right': '<path d="M5 12h14M12 5l7 7-7 7"></path>',
       'close': '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>',
       'check': '<polyline points="20 6 9 17 4 12"></polyline>',
-      'robot': '<rect x="4" y="4" width="16" height="16" rx="2"></rect><circle cx="9" cy="10" r="1"></circle><circle cx="15" cy="10" r="1"></circle><path d="M9 15h6"></path>'
+      'robot': '<rect x="4" y="4" width="16" height="16" rx="2"></rect><circle cx="9" cy="10" r="1"></circle><circle cx="15" cy="10" r="1"></circle><path d="M9 15h6"></path>',
+      'clear': '<path d="M3 6h18M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>'
     };
 
     return icons[iconName] || '';
