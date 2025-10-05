@@ -1,0 +1,16 @@
+{
+  "products": [
+    {
+      "name": "Qobo",
+      "description": "A snail-shaped coding robot that teaches programming concepts to children ages 3+",
+      "url": "https://amzn.to/46NQMhF",
+      "category": "Physical Coding Robot"
+    },
+    {
+      "name": "Cubetto",
+      "description": "The wooden coding robot that inspired LogicPath - teaches programming without screens",
+      "url": "https://primotoys.com",
+      "category": "Physical Coding Robot"
+    }
+  ]
+}
