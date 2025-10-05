@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npx http-server public -p 8080 -o",
     "build": "npm run copy-assets",
-    "copy-assets": "cp -r src/* public/ && cp -r maps public/maps",
+    "copy-assets": "cp -r src/* public/ && cp -r maps public/maps && cp related-products.json public/",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
