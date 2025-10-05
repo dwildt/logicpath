@@ -41,12 +41,12 @@ class LogicPath {
 
     // Append to DOM
     const app = document.getElementById('app');
-    app.appendChild(this.controlBar.getElement());
 
     this.gameBoardContainer = document.createElement('div');
     this.gameBoardContainer.id = 'game-board-container';
     app.appendChild(this.gameBoardContainer);
 
+    app.appendChild(this.controlBar.getElement());
     app.appendChild(this.commandPanel.getElement());
     app.appendChild(this.mapSelector.getElement());
     app.appendChild(this.aboutModal.getElement());

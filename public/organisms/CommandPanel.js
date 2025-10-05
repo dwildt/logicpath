@@ -19,28 +19,7 @@ export class CommandPanel {
     const panel = document.createElement('div');
     panel.className = 'command-panel';
 
-    // Available blocks section
-    const blocksSection = document.createElement('div');
-    blocksSection.className = 'available-blocks';
-
-    const blocksTitle = document.createElement('h3');
-    blocksTitle.textContent = 'Commands';
-    blocksSection.appendChild(blocksTitle);
-
-    const blocksContainer = document.createElement('div');
-    blocksContainer.className = 'blocks-container';
-
-    // Create available blocks
-    [COMMAND_TYPES.FORWARD, COMMAND_TYPES.TURN_LEFT, COMMAND_TYPES.TURN_RIGHT].forEach(type => {
-      const block = new Block(type);
-      this.availableBlocks.push(block);
-      blocksContainer.appendChild(block.getElement());
-    });
-
-    blocksSection.appendChild(blocksContainer);
-    panel.appendChild(blocksSection);
-
-    // Command slots section
+    // Command slots section (Program - now first)
     const slotsSection = document.createElement('div');
     slotsSection.className = 'command-slots';
 
@@ -60,6 +39,27 @@ export class CommandPanel {
 
     slotsSection.appendChild(slotsContainer);
     panel.appendChild(slotsSection);
+
+    // Available blocks section (Commands - now second)
+    const blocksSection = document.createElement('div');
+    blocksSection.className = 'available-blocks';
+
+    const blocksTitle = document.createElement('h3');
+    blocksTitle.textContent = 'Commands';
+    blocksSection.appendChild(blocksTitle);
+
+    const blocksContainer = document.createElement('div');
+    blocksContainer.className = 'blocks-container';
+
+    // Create available blocks
+    [COMMAND_TYPES.FORWARD, COMMAND_TYPES.TURN_LEFT, COMMAND_TYPES.TURN_RIGHT].forEach(type => {
+      const block = new Block(type);
+      this.availableBlocks.push(block);
+      blocksContainer.appendChild(block.getElement());
+    });
+
+    blocksSection.appendChild(blocksContainer);
+    panel.appendChild(blocksSection);
 
     return panel;
   }
