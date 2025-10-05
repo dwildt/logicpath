@@ -28,7 +28,7 @@ class LogicPath {
 
   async init() {
     // Create UI components
-    this.commandPanel = new CommandPanel(4);
+    this.commandPanel = new CommandPanel(8);
     this.controlBar = new ControlBar({
       onPlay: () => this.handlePlay(),
       onRestart: () => this.handleRestart(),
@@ -130,10 +130,12 @@ class LogicPath {
       return;
     }
 
+    console.log('Executing commands:', commands);
     this.controlBar.setPlayDisabled(true);
 
     try {
       const result = await this.executor.execute(commands);
+      console.log('Execution result:', result);
 
       if (!result.success && !result.goalReached) {
         alert(`Error: ${result.message}`);

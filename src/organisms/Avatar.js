@@ -18,6 +18,11 @@ export class Avatar {
     avatar.className = 'avatar';
     avatar.setAttribute('data-robot', 'true');
 
+    // Set initial grid position immediately to prevent grid auto-flow
+    const pos = this.robot.getPosition();
+    avatar.style.gridRowStart = pos.row + 1;
+    avatar.style.gridColumnStart = pos.col + 1;
+
     const icon = new Icon('robot', 40);
     avatar.appendChild(icon.getElement());
 
@@ -28,8 +33,8 @@ export class Avatar {
     const pos = this.robot.getPosition();
     this.element.setAttribute('data-row', pos.row);
     this.element.setAttribute('data-col', pos.col);
-    this.element.style.gridRow = pos.row + 1;
-    this.element.style.gridColumn = pos.col + 1;
+    this.element.style.gridRowStart = pos.row + 1;
+    this.element.style.gridColumnStart = pos.col + 1;
   }
 
   updateRotation() {

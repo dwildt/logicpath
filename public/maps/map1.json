@@ -45,5 +45,5 @@
     "startPosition": { "row": 0, "col": 0 },
     "startDirection": "east"
   },
-  "goal": { "row": 0, "col": 3 }
+  "goal": { "row": 0, "col": 5 }
 }

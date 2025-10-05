@@ -17,6 +17,10 @@ export class Cell {
     cell.setAttribute('data-col', this.col);
     cell.setAttribute('data-walkable', this.tileData.walkable);
 
+    // Explicitly set grid position to prevent auto-flow issues
+    cell.style.gridRowStart = this.row + 1;
+    cell.style.gridColumnStart = this.col + 1;
+
     return cell;
   }
 

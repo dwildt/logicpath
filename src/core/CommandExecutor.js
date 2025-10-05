@@ -48,6 +48,8 @@ export class CommandExecutor {
         const result = await this.executeCommand(command);
         results.push(result);
 
+        console.log(`Command ${i + 1}/${commands.length} executed. Robot at:`, this.robot.getPosition());
+
         this.dispatchEvent('command-complete', {
           command,
           index: i,
@@ -65,8 +67,13 @@ export class CommandExecutor {
           };
         }
 
-        // Check if goal reached
+        // Wait for animation
+        await this.wait(this.animationDelay);
+
+        // Check if goal reached (after animation completes)
+        console.log('Checking goal. Robot at:', this.robot.getPosition(), 'Goal at:', this.map.getGoal());
         if (this.map.isGoal(this.robot.getPosition())) {
+          console.log('Goal reached!');
           this.dispatchEvent('goal-reached', {
             position: this.robot.getPosition()
           });
@@ -79,9 +86,6 @@ export class CommandExecutor {
             results
           };
         }
-
-        // Wait for animation
-        await this.wait(this.animationDelay);
       }
 
       this.isExecuting = false;
@@ -108,8 +112,20 @@ export class CommandExecutor {
   async executeCommand(command) {
     switch (command) {
     case COMMAND_TYPES.FORWARD: {
+      const currentPos = this.robot.getPosition();
       const nextPos = this.robot.getNextPosition();
-      if (!this.map.isWalkable(nextPos)) {
+      const tile = this.map.getTile(nextPos);
+      const isWalkable = this.map.isWalkable(nextPos);
+
+      console.log('FORWARD command:', {
+        currentPos,
+        nextPos,
+        tile,
+        isWalkable,
+        direction: this.robot.getDirection()
+      });
+
+      if (!isWalkable) {
         return {
           success: false,
           message: 'Cannot move forward - obstacle or boundary',

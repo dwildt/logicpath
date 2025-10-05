@@ -2,7 +2,7 @@
  * MapLoader - loads map JSON files
  */
 
-import { Map } from './Map.js';
+import { Map as GameMap } from './Map.js';
 
 export class MapLoader {
   constructor(mapsPath = './maps') {
@@ -18,12 +18,14 @@ export class MapLoader {
    */
   async loadMap(mapId) {
     try {
-      const response = await fetch(`${this.mapsPath}/${mapId}.json`);
+      // Add cache-busting parameter to force reload
+      const cacheBuster = Date.now();
+      const response = await fetch(`${this.mapsPath}/${mapId}.json?v=${cacheBuster}`);
       if (!response.ok) {
         throw new Error(`Failed to load map: ${mapId}`);
       }
       const mapData = await response.json();
-      const map = new Map(mapData);
+      const map = new GameMap(mapData);
       this.maps.set(mapId, map);
       this.currentMap = map;
       return map;
@@ -43,9 +45,10 @@ export class MapLoader {
     const mapIds = ['map1', 'map2', 'map3'];
 
     const mapMetadata = [];
+    const cacheBuster = Date.now();
     for (const mapId of mapIds) {
       try {
-        const response = await fetch(`${this.mapsPath}/${mapId}.json`);
+        const response = await fetch(`${this.mapsPath}/${mapId}.json?v=${cacheBuster}`);
         if (response.ok) {
           const data = await response.json();
           mapMetadata.push({

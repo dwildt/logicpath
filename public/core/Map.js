@@ -12,6 +12,14 @@ export class Map {
     this.startPosition = mapData.robot.startPosition;
     this.startDirection = mapData.robot.startDirection;
     this.goal = mapData.goal;
+
+    // Debug: log the map data
+    console.log(`Map ${this.id} loaded. Checking key tiles:`);
+    if (this.id === 'map2') {
+      console.log('  (0,2):', this.tiles[0][2]);
+      console.log('  (0,3):', this.tiles[0][3]);
+      console.log('  (0,4):', this.tiles[0][4]);
+    }
   }
 
   /**
