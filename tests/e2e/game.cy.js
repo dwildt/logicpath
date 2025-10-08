@@ -20,6 +20,11 @@ describe('LogicPath Game', () => {
     cy.get('[data-command="forward"]').should('be.visible');
     cy.get('[data-command="left"]').should('be.visible');
     cy.get('[data-command="right"]').should('be.visible');
+
+    // Verify blocks are in the Commands section
+    cy.get('.blocks-container .block-forward').should('exist');
+    cy.get('.blocks-container .block-left').should('exist');
+    cy.get('.blocks-container .block-right').should('exist');
   });
 
   it('should open map selector', () => {
@@ -35,14 +40,25 @@ describe('LogicPath Game', () => {
     cy.contains('Claude Code').should('be.visible');
   });
 
-  it('should place blocks in command slots', () => {
-    cy.get('[data-command="forward"]').click();
+  it('should place blocks in command slots via drag and drop', () => {
+    // Verify blocks can be dragged to slots
+    const dataTransfer = new DataTransfer();
+
+    cy.get('.blocks-container .block-forward').trigger('dragstart', { dataTransfer });
+    cy.get('.block-slot').first().trigger('drop', { dataTransfer });
+
     cy.get('.block-slot.filled').should('have.length', 1);
   });
 
   it('should clear commands on restart', () => {
-    cy.get('[data-command="forward"]').click();
-    cy.get('[data-command="forward"]').click();
+    const dataTransfer = new DataTransfer();
+
+    // Add two blocks via drag and drop
+    cy.get('.blocks-container .block-forward').trigger('dragstart', { dataTransfer });
+    cy.get('.block-slot').eq(0).trigger('drop', { dataTransfer });
+    cy.get('.blocks-container .block-forward').trigger('dragstart', { dataTransfer });
+    cy.get('.block-slot').eq(1).trigger('drop', { dataTransfer });
+
     cy.get('.block-slot.filled').should('have.length', 2);
 
     cy.get('.btn-restart').click();

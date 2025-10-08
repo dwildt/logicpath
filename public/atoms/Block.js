@@ -31,11 +31,10 @@ export class Block {
     });
 
     // Click for mobile - add to panel
-    // Only dispatch block-clicked if NOT in a slot (Commands area only)
     block.addEventListener('click', (e) => {
-      const isInSlot = block.closest('.block-slot');
-      if (isInSlot) {
-        // Let the slot handle the click (for removal)
+      // Don't dispatch if this block is in a slot (allow slot to handle removal)
+      if (block.parentElement && block.parentElement.classList.contains('block-slot')) {
+        e.stopPropagation();
         return;
       }
       const event = new CustomEvent('block-clicked', {

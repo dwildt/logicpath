@@ -7,5 +7,7 @@ module.exports = defineConfig({
     supportFile: false,
     video: false,
     screenshotOnRunFailure: true
-  }
+  },
+  viewportWidth: 1280,
+  viewportHeight: 1024
 });

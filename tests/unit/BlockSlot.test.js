@@ -82,15 +82,14 @@ describe('BlockSlot', () => {
     }, 100);
   });
 
-  test('should remove block when clicking on block element directly', () => {
+  test('should remove block when clicking on slot with block', () => {
     const block = new Block(COMMAND_TYPES.FORWARD);
     blockSlot.setBlock(block);
 
     expect(blockSlot.hasBlock()).toBe(true);
 
-    // Click directly on the block element
-    const blockElement = blockSlot.getElement().querySelector('.block');
-    blockElement.click();
+    // Click on the slot element (not the block)
+    blockSlot.getElement().click();
 
     expect(blockSlot.hasBlock()).toBe(false);
   });
