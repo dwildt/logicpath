@@ -6,14 +6,14 @@
   "tiles": [
     { "row": 0, "col": 0, "type": "grass", "walkable": true },
     { "row": 0, "col": 1, "type": "grass", "walkable": true },
-    { "row": 0, "col": 2, "type": "water", "walkable": false },
-    { "row": 0, "col": 3, "type": "grass", "walkable": true },
+    { "row": 0, "col": 2, "type": "grass", "walkable": true },
+    { "row": 0, "col": 3, "type": "water", "walkable": false },
     { "row": 0, "col": 4, "type": "grass", "walkable": true },
     { "row": 0, "col": 5, "type": "grass", "walkable": true },
     { "row": 1, "col": 0, "type": "grass", "walkable": true },
     { "row": 1, "col": 1, "type": "grass", "walkable": true },
-    { "row": 1, "col": 2, "type": "water", "walkable": false },
-    { "row": 1, "col": 3, "type": "grass", "walkable": true },
+    { "row": 1, "col": 2, "type": "grass", "walkable": true },
+    { "row": 1, "col": 3, "type": "water", "walkable": false },
     { "row": 1, "col": 4, "type": "grass", "walkable": true },
     { "row": 1, "col": 5, "type": "grass", "walkable": true },
     { "row": 2, "col": 0, "type": "grass", "walkable": true },
@@ -45,5 +45,5 @@
     "startPosition": { "row": 0, "col": 0 },
     "startDirection": "east"
   },
-  "goal": { "row": 2, "col": 2 }
+  "goal": { "row": 2, "col": 3 }
 }
