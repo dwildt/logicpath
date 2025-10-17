@@ -42,7 +42,7 @@ export class MapLoader {
   async loadMapList() {
     // For now, we'll hardcode the available maps
     // In the future, this could fetch a manifest file
-    const mapIds = ['map1', 'map2', 'map3'];
+    const mapIds = ['map1', 'map2', 'map3', 'map4', 'map5', 'map6', 'map7', 'map8', 'map9', 'map10'];
 
     const mapMetadata = [];
     const cacheBuster = Date.now();

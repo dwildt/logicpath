@@ -6,3 +6,4 @@ coverage/
 dist/
 cypress/videos/
 cypress/screenshots/
+public/maps/maps/
