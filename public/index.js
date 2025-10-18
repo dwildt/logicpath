@@ -150,10 +150,14 @@ class LogicPath {
   }
 
   handleRestart() {
-    this.robot.reset();
-    this.gameBoard.getAvatar().reset();
+    if (this.robot) {
+      this.robot.reset();
+    }
+    if (this.gameBoard) {
+      this.gameBoard.getAvatar().reset();
+      this.gameBoard.unhighlightAll();
+    }
     this.commandPanel.clear();
-    this.gameBoard.unhighlightAll();
   }
 
   handleClear() {

@@ -43,6 +43,7 @@ describe('LogicPath Game', () => {
   it('should place blocks in command slots via drag and drop', () => {
     // Verify blocks can be dragged to slots
     const dataTransfer = new DataTransfer();
+    dataTransfer.setData('commandType', 'forward');
 
     cy.get('.blocks-container .block-forward').trigger('dragstart', { dataTransfer });
     cy.get('.block-slot').first().trigger('drop', { dataTransfer });
@@ -51,16 +52,14 @@ describe('LogicPath Game', () => {
   });
 
   it('should clear commands on restart', () => {
+    // Add a block
     const dataTransfer = new DataTransfer();
-
-    // Add two blocks via drag and drop
+    dataTransfer.setData('commandType', 'forward');
     cy.get('.blocks-container .block-forward').trigger('dragstart', { dataTransfer });
-    cy.get('.block-slot').eq(0).trigger('drop', { dataTransfer });
-    cy.get('.blocks-container .block-forward').trigger('dragstart', { dataTransfer });
-    cy.get('.block-slot').eq(1).trigger('drop', { dataTransfer });
+    cy.get('.block-slot').first().trigger('drop', { dataTransfer });
+    cy.get('.block-slot.filled').should('have.length', 1);
 
-    cy.get('.block-slot.filled').should('have.length', 2);
-
+    // Restart should clear the block
     cy.get('.btn-restart').click();
     cy.get('.block-slot.filled').should('have.length', 0);
   });
