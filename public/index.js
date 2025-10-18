@@ -28,7 +28,7 @@ class LogicPath {
 
   async init() {
     // Create UI components
-    this.commandPanel = new CommandPanel(8);
+    this.commandPanel = new CommandPanel(24);
     this.controlBar = new ControlBar({
       onPlay: () => this.handlePlay(),
       onRestart: () => this.handleRestart(),
