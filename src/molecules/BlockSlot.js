@@ -34,14 +34,6 @@ export class BlockSlot {
       }
     });
 
-    // Click to remove block
-    slot.addEventListener('click', (e) => {
-      if (this.block) {
-        e.stopPropagation();
-        this.removeBlock();
-      }
-    });
-
     return slot;
   }
 

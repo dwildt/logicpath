@@ -4,6 +4,7 @@
 
 import { Block } from '../atoms/Block.js';
 import { BlockSlot } from '../molecules/BlockSlot.js';
+import { TrashZone } from '../molecules/TrashZone.js';
 import { COMMAND_TYPES } from '../core/CommandExecutor.js';
 
 export class CommandPanel {
@@ -11,6 +12,7 @@ export class CommandPanel {
     this.slotCount = slotCount;
     this.slots = [];
     this.availableBlocks = [];
+    this.trashZone = null;
     this.element = this.render();
     this.setupEventListeners();
   }
@@ -38,6 +40,11 @@ export class CommandPanel {
     }
 
     slotsSection.appendChild(slotsContainer);
+
+    // Add trash zone
+    this.trashZone = new TrashZone();
+    slotsSection.appendChild(this.trashZone.getElement());
+
     panel.appendChild(slotsSection);
 
     // Available blocks section (Commands - now second)
@@ -82,6 +89,15 @@ export class CommandPanel {
       if (emptySlot) {
         const block = new Block(commandType);
         emptySlot.setBlock(block);
+      }
+    });
+
+    // Handle trash zone removal
+    window.addEventListener('trash-block-removed', (e) => {
+      const { slotIndex } = e.detail;
+      const slot = this.slots[slotIndex];
+      if (slot) {
+        slot.removeBlock();
       }
     });
   }

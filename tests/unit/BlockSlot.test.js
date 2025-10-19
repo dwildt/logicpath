@@ -32,21 +32,22 @@ describe('BlockSlot', () => {
     expect(blockSlot.getElement().classList.contains('filled')).toBe(true);
   });
 
-  test('should remove block when clicked', () => {
+  test('should not remove block when clicked (removal via trash zone)', () => {
     const block = new Block(COMMAND_TYPES.FORWARD);
     blockSlot.setBlock(block);
 
     expect(blockSlot.hasBlock()).toBe(true);
 
-    // Click on the slot (which contains the block)
+    // Click on the slot (should not remove - need to drag to trash)
     blockSlot.getElement().click();
 
-    expect(blockSlot.hasBlock()).toBe(false);
-    expect(blockSlot.getBlock()).toBe(null);
-    expect(blockSlot.getElement().classList.contains('filled')).toBe(false);
+    // Block should still be there
+    expect(blockSlot.hasBlock()).toBe(true);
+    expect(blockSlot.getBlock()).toBe(block);
+    expect(blockSlot.getElement().classList.contains('filled')).toBe(true);
   });
 
-  test('should dispatch block-removed event when block is removed', (done) => {
+  test('should dispatch block-removed event when block is removed programmatically', (done) => {
     const block = new Block(COMMAND_TYPES.FORWARD);
     blockSlot.setBlock(block);
 
@@ -55,7 +56,7 @@ describe('BlockSlot', () => {
       done();
     }, { once: true });
 
-    blockSlot.getElement().click();
+    blockSlot.removeBlock();
   });
 
   test('should not dispatch block-clicked event when clicking block in slot', (done) => {
@@ -82,14 +83,14 @@ describe('BlockSlot', () => {
     }, 100);
   });
 
-  test('should remove block when clicking on slot with block', () => {
+  test('should remove block via programmatic call', () => {
     const block = new Block(COMMAND_TYPES.FORWARD);
     blockSlot.setBlock(block);
 
     expect(blockSlot.hasBlock()).toBe(true);
 
-    // Click on the slot element (not the block)
-    blockSlot.getElement().click();
+    // Remove block programmatically (e.g., via trash zone)
+    blockSlot.removeBlock();
 
     expect(blockSlot.hasBlock()).toBe(false);
   });

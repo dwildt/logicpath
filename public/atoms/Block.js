@@ -23,6 +23,13 @@ export class Block {
     // Drag event listeners
     block.addEventListener('dragstart', (e) => {
       e.dataTransfer.setData('commandType', this.commandType);
+
+      // If this block is in a slot, add the slot index
+      if (block.parentElement && block.parentElement.classList.contains('block-slot')) {
+        const slotIndex = block.parentElement.getAttribute('data-slot-index');
+        e.dataTransfer.setData('slotIndex', slotIndex);
+      }
+
       block.classList.add('dragging');
     });
 

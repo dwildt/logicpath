@@ -63,4 +63,10 @@ describe('LogicPath Game', () => {
     cy.get('.btn-restart').click();
     cy.get('.block-slot.filled').should('have.length', 0);
   });
+
+  it('should have trash zone visible', () => {
+    cy.get('.trash-zone').should('be.visible');
+    cy.get('.trash-zone .icon').should('be.visible');
+    cy.get('.trash-zone-label').should('contain', 'Drag here to remove');
+  });
 });
