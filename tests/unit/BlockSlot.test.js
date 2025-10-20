@@ -94,4 +94,129 @@ describe('BlockSlot', () => {
 
     expect(blockSlot.hasBlock()).toBe(false);
   });
+
+  test('should handle dragover event', () => {
+    const element = blockSlot.getElement();
+    const dragoverEvent = new Event('dragover', {
+      bubbles: true,
+      cancelable: true
+    });
+
+    element.dispatchEvent(dragoverEvent);
+
+    expect(element.classList.contains('drag-over')).toBe(true);
+  });
+
+  test('should handle dragleave event', () => {
+    const element = blockSlot.getElement();
+
+    // First add drag-over class
+    element.classList.add('drag-over');
+
+    const dragleaveEvent = new Event('dragleave', {
+      bubbles: true
+    });
+
+    element.dispatchEvent(dragleaveEvent);
+
+    expect(element.classList.contains('drag-over')).toBe(false);
+  });
+
+  test('should handle drop event with command type', (done) => {
+    const element = blockSlot.getElement();
+
+    window.addEventListener('block-placed', (e) => {
+      expect(e.detail.slotIndex).toBe(0);
+      expect(e.detail.commandType).toBe(COMMAND_TYPES.FORWARD);
+      done();
+    }, { once: true });
+
+    const mockDataTransfer = {
+      data: {},
+      setData: function(key, value) {
+        this.data[key] = value;
+      },
+      getData: function(key) {
+        return this.data[key];
+      }
+    };
+    mockDataTransfer.setData('commandType', COMMAND_TYPES.FORWARD);
+
+    const dropEvent = new Event('drop', {
+      bubbles: true,
+      cancelable: true
+    });
+    dropEvent.dataTransfer = mockDataTransfer;
+
+    element.dispatchEvent(dropEvent);
+  });
+
+  test('should not dispatch event on drop without command type', (done) => {
+    const element = blockSlot.getElement();
+    let eventFired = false;
+
+    window.addEventListener('block-placed', () => {
+      eventFired = true;
+    });
+
+    const mockDataTransfer = {
+      data: {},
+      setData: function(key, value) {
+        this.data[key] = value;
+      },
+      getData: function(key) {
+        return this.data[key];
+      }
+    };
+    // Don't set commandType
+
+    const dropEvent = new Event('drop', {
+      bubbles: true,
+      cancelable: true
+    });
+    dropEvent.dataTransfer = mockDataTransfer;
+
+    element.dispatchEvent(dropEvent);
+
+    setTimeout(() => {
+      expect(eventFired).toBe(false);
+      done();
+    }, 100);
+  });
+
+  test('should highlight slot', () => {
+    blockSlot.highlight();
+    expect(blockSlot.getElement().classList.contains('active')).toBe(true);
+  });
+
+  test('should unhighlight slot', () => {
+    blockSlot.highlight();
+    blockSlot.unhighlight();
+    expect(blockSlot.getElement().classList.contains('active')).toBe(false);
+  });
+
+  test('should replace existing block when setting new block', () => {
+    const block1 = new Block(COMMAND_TYPES.FORWARD);
+    const block2 = new Block(COMMAND_TYPES.TURN_LEFT);
+
+    blockSlot.setBlock(block1);
+    expect(blockSlot.getBlock()).toBe(block1);
+
+    blockSlot.setBlock(block2);
+    expect(blockSlot.getBlock()).toBe(block2);
+    expect(blockSlot.hasBlock()).toBe(true);
+  });
+
+  test('should not dispatch event when removing null block', () => {
+    let eventFired = false;
+
+    window.addEventListener('block-removed', () => {
+      eventFired = true;
+    });
+
+    // Remove when no block exists
+    blockSlot.removeBlock();
+
+    expect(eventFired).toBe(false);
+  });
 });
