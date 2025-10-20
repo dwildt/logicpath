@@ -4,6 +4,7 @@
 
 export const COMMAND_TYPES = {
   FORWARD: 'forward',
+  BACKWARD: 'backward',
   TURN_LEFT: 'left',
   TURN_RIGHT: 'right'
 };
@@ -133,6 +134,35 @@ export class CommandExecutor {
         };
       }
       this.robot.moveForward();
+      return {
+        success: true,
+        command,
+        position: this.robot.getPosition()
+      };
+    }
+
+    case COMMAND_TYPES.BACKWARD: {
+      const currentPos = this.robot.getPosition();
+      const backwardPos = this.robot.getBackwardPosition();
+      const tile = this.map.getTile(backwardPos);
+      const isWalkable = this.map.isWalkable(backwardPos);
+
+      console.log('BACKWARD command:', {
+        currentPos,
+        backwardPos,
+        tile,
+        isWalkable,
+        direction: this.robot.getDirection()
+      });
+
+      if (!isWalkable) {
+        return {
+          success: false,
+          message: 'Cannot move backward - obstacle or boundary',
+          command
+        };
+      }
+      this.robot.moveBackward();
       return {
         success: true,
         command,

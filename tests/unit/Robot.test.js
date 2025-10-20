@@ -57,11 +57,46 @@ describe('Robot', () => {
     });
   });
 
+  describe('moveBackward', () => {
+    it('should move backward from north (to south)', () => {
+      robot.setDirection(DIRECTIONS.NORTH);
+      robot.moveBackward();
+      expect(robot.getPosition()).toEqual({ row: 1, col: 0 });
+    });
+
+    it('should move backward from east (to west)', () => {
+      robot.setDirection(DIRECTIONS.EAST);
+      robot.moveBackward();
+      expect(robot.getPosition()).toEqual({ row: 0, col: -1 });
+    });
+
+    it('should move backward from south (to north)', () => {
+      robot.setDirection(DIRECTIONS.SOUTH);
+      robot.moveBackward();
+      expect(robot.getPosition()).toEqual({ row: -1, col: 0 });
+    });
+
+    it('should move backward from west (to east)', () => {
+      robot.setDirection(DIRECTIONS.WEST);
+      robot.moveBackward();
+      expect(robot.getPosition()).toEqual({ row: 0, col: 1 });
+    });
+  });
+
   describe('getNextPosition', () => {
     it('should return next position without moving', () => {
       robot.setDirection(DIRECTIONS.EAST);
       const nextPos = robot.getNextPosition();
       expect(nextPos).toEqual({ row: 0, col: 1 });
+      expect(robot.getPosition()).toEqual({ row: 0, col: 0 });
+    });
+  });
+
+  describe('getBackwardPosition', () => {
+    it('should return backward position without moving', () => {
+      robot.setDirection(DIRECTIONS.EAST);
+      const backwardPos = robot.getBackwardPosition();
+      expect(backwardPos).toEqual({ row: 0, col: -1 });
       expect(robot.getPosition()).toEqual({ row: 0, col: 0 });
     });
   });

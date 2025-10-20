@@ -56,6 +56,7 @@ export class Block {
   getIconName() {
     const iconMap = {
       [COMMAND_TYPES.FORWARD]: 'forward',
+      [COMMAND_TYPES.BACKWARD]: 'backward',
       [COMMAND_TYPES.TURN_LEFT]: 'left',
       [COMMAND_TYPES.TURN_RIGHT]: 'right'
     };

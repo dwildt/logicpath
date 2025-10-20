@@ -106,7 +106,7 @@ class LogicPath {
 
       if (e.detail.result.success) {
         const avatar = this.gameBoard.getAvatar();
-        if (e.detail.command === 'forward') {
+        if (e.detail.command === 'forward' || e.detail.command === 'backward') {
           await avatar.animateMove();
         } else {
           await avatar.animateRotate();

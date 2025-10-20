@@ -24,6 +24,17 @@ export class Robot {
   }
 
   /**
+   * Move robot backward (opposite of current direction)
+   * @returns {{row: number, col: number}} New position
+   */
+  moveBackward() {
+    const vector = getDirectionVector(this.direction);
+    this.position.row -= vector.row;
+    this.position.col -= vector.col;
+    return { ...this.position };
+  }
+
+  /**
    * Turn robot left
    * @returns {string} New direction
    */
@@ -50,6 +61,18 @@ export class Robot {
     return {
       row: this.position.row + vector.row,
       col: this.position.col + vector.col
+    };
+  }
+
+  /**
+   * Get next position if robot moves backward (without actually moving)
+   * @returns {{row: number, col: number}}
+   */
+  getBackwardPosition() {
+    const vector = getDirectionVector(this.direction);
+    return {
+      row: this.position.row - vector.row,
+      col: this.position.col - vector.col
     };
   }
 

@@ -59,7 +59,7 @@ export class CommandPanel {
     blocksContainer.className = 'blocks-container';
 
     // Create available blocks
-    [COMMAND_TYPES.FORWARD, COMMAND_TYPES.TURN_LEFT, COMMAND_TYPES.TURN_RIGHT].forEach(type => {
+    [COMMAND_TYPES.FORWARD, COMMAND_TYPES.BACKWARD, COMMAND_TYPES.TURN_LEFT, COMMAND_TYPES.TURN_RIGHT].forEach(type => {
       const block = new Block(type);
       this.availableBlocks.push(block);
       blocksContainer.appendChild(block.getElement());

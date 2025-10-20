@@ -20,7 +20,8 @@
 
   --color-forward: #4CAF50;
   --color-left: #FFC107;
-  --color-right: #2196F3;
+  --color-right: #F44336;
+  --color-backward: #9C27B0;
 
   --color-grass: #8BC34A;
   --color-water: #03A9F4;
@@ -266,7 +267,11 @@ body {
 }
 
 .block-right {
-  background: linear-gradient(135deg, var(--color-right) 0%, #42A5F5 100%);
+  background: linear-gradient(135deg, var(--color-right) 0%, #EF5350 100%);
+}
+
+.block-backward {
+  background: linear-gradient(135deg, var(--color-backward) 0%, #BA68C8 100%);
 }
 
 .block .icon {

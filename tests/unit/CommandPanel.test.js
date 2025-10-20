@@ -25,7 +25,7 @@ describe('CommandPanel', () => {
 
     test('should create available blocks for all command types', () => {
       const blocks = commandPanel.getElement().querySelectorAll('.available-blocks .block');
-      expect(blocks).toHaveLength(3); // forward, left, right
+      expect(blocks).toHaveLength(4); // forward, backward, left, right
     });
   });
 

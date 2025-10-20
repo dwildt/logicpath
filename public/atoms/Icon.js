@@ -36,6 +36,7 @@ export class Icon {
       'map': '<polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line>',
       'info': '<circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line>',
       'forward': '<polyline points="12 19 12 5"></polyline><polyline points="5 12 12 5 19 12"></polyline>',
+      'backward': '<polyline points="12 5 12 19"></polyline><polyline points="5 12 12 19 19 12"></polyline>',
       'left': '<path d="M19 12H5M12 19l-7-7 7-7"></path>',
       'right': '<path d="M5 12h14M12 5l7 7-7 7"></path>',
       'close': '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>',
